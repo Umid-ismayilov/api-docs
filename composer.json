@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
+        "br-tech/api-docs": "dev-main",
         "laravel/framework": "^8.0|^9.0|^10.0"
     },
     "autoload": {
