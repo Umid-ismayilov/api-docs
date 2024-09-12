@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/src/composer.json</pharConfigPath>
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
@@ -33,6 +33,7 @@
       <option name="presentableId" value="Default" />
       <updated>1726146273023</updated>
       <workItem from="1726146274371" duration="1702000" />
+      <workItem from="1726150002594" duration="308000" />
     </task>
     <servers />
   </component>
