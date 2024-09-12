@@ -1,5 +1,5 @@
 {
-    "name": "br/api-docs",
+    "name": "br-tech/api-docs",
     "description": "API documentation package for Laravel",
     "type": "library",
     "license": "MIT",
