@@ -1,6 +1,6 @@
 {{--@extends('admin.layout.app')--}}
 
-@section('content')
+{{--@section('content')--}}
     <div class="container">
         <h1>API Details</h1>
         <p><strong>Route:</strong> {{ $doc->route }}</p>
@@ -11,9 +11,9 @@
         <button id="copy-curl" class="btn btn-secondary">Copy</button>
 
     </div>
-@endsection
+{{--@endsection--}}
 
-@section('scripts')
+{{--@section('scripts')--}}
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -27,4 +27,4 @@
             });
         });
     </script>
-@endsection
+{{--@endsection--}}

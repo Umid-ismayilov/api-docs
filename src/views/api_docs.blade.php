@@ -1,6 +1,6 @@
 {{--@extends('admin.layout.app')--}}
 
-@section('content')<div class="container">
+{{--@section('content')<div class="container">--}}
     <h1>API Documentation</h1>
     <table class="table">
         <thead>
@@ -23,4 +23,4 @@
         </tbody>
     </table>
 </div>
-@endsection
+{{--@endsection--}}
