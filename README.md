@@ -14,7 +14,7 @@ BR Technologies tərəfindən hazırlanmış API-Docs, Laravel tətbiqləri üç
 1. Composer vasitəsilə paketi yükləyin:
 
 ```bash
-composer require br-tech/api-docs:^1.0
+composer remove br-tech/api-docs:dev-main
 ```
 
 2. Servis provayderini config/app.php faylına əlavə edin (Laravel 5.5+ versiyalarda avtomatik olaraq əlavə olunur):

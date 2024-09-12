@@ -1,6 +1,6 @@
 <?php
 
-namespace Br\ApiDocs;
+namespace Br\ApiDocsPackage;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
