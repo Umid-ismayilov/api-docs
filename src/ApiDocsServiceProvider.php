@@ -32,17 +32,23 @@ class ApiDocsServiceProvider extends ServiceProvider
     protected function registerRoutes()
     {
         Route::group($this->routeConfiguration(), function () {
-            Route::get('/api-docs', [ApiDocsController::class, 'index'])->name('api-docs.index');
+            Route::get('/index', [ApiDocsController::class, 'index'])->name('api-docs.index');
             Route::get('/api-docs/{id}', [ApiDocsController::class, 'show'])->name('api-docs.show');
         });
     }
 
     protected function routeConfiguration()
     {
-        return [
+        $config = [
             'prefix' => config('api-docs.route_prefix'),
-            'middleware' => config('api-docs.middleware'),
         ];
+
+        $middleware = config('api-docs.middleware');
+        if (!empty($middleware)) {
+            $config['middleware'] = $middleware;
+        }
+
+        return $config;
     }
 
     protected function registerApiLogger()
