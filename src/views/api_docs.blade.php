@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+{{--@extends('admin.layout.app')--}}
 
 @section('content')<div class="container">
     <h1>API Documentation</h1>
