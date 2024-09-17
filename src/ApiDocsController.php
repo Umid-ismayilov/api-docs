@@ -24,7 +24,7 @@ class ApiDocsController extends Controller
             abort(404, 'API documentation not found');
         }
 
-        $headers     = json_decode($doc->header, true) ?? [];
+        $headers     = json_decode($doc->headers, true) ?? [];
         $body        = json_decode($doc->body, true) ?? [];
         $curlCommand = $this->buildCurlCommand($doc->route, $doc->method, $headers, $body);
 
