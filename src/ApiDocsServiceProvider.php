@@ -53,46 +53,50 @@ class ApiDocsServiceProvider extends ServiceProvider
 
     protected function registerApiLogger()
     {
-        $this->app->booted(function () {
-            if (!$this->checkIfTableExists('api_docs')) {
-                $this->createApiDocsTable();
-            }
-
-            try {
-                $docs = DB::table('api_docs')->where('route', $this->app->request->fullUrl())->first();
-                $headers = Request::header();
-                $body = Request::getContent();
-
-                $ipPrefix = config('api-docs.ip_prefix');
-                $apiPrefix = config('api-docs.api_prefix');
-
-                if (!$docs &&
-                    isset($_SERVER['HTTP_CF_CONNECTING_IP']) &&
-                    $_SERVER['HTTP_CF_CONNECTING_IP'] === $ipPrefix &&
-                    $this->app->request->is($apiPrefix)) {
-                    DB::table('api_docs')->updateOrInsert(
-                        [
-                            'route' => $this->app->request->fullUrl(),
-                            'method' => Request::method()
-                        ],
-                        [
-                            'headers' => json_encode($headers),
-                            'body' => $body
-                        ]
-                    );
+        if (config('api-docs.enabled')) {
+            $this->app->booted(function () {
+                if (!$this->checkIfTableExists('api_docs')) {
+                    $this->createApiDocsTable();
                 }
-            } catch (QueryException $e) {
-                // Log the error or handle it as needed
-                // For now, we'll just suppress it to avoid breaking the application
-            }
-        });
+
+                try {
+                    $docs    = DB::table('api_docs')->where('route', $this->app->request->fullUrl())->first();
+                    $headers = Request::header();
+                    $body    = Request::getContent();
+
+                    $ipPrefix  = config('api-docs.ip_prefix');
+                    $apiPrefix = config('api-docs.api_prefix');
+
+                    if (!$docs &&
+                        isset($_SERVER['HTTP_CF_CONNECTING_IP']) &&
+                        $_SERVER['HTTP_CF_CONNECTING_IP'] === $ipPrefix &&
+                        $this->app->request->is($apiPrefix)) {
+                        DB::table('api_docs')->updateOrInsert(
+                            [
+                                'route'  => $this->app->request->fullUrl(),
+                                'method' => Request::method()
+                            ],
+                            [
+                                'headers' => json_encode($headers),
+                                'body'    => $body
+                            ]
+                        );
+                    }
+                }
+                catch (QueryException $e) {
+                    // Log the error or handle it as needed
+                    // For now, we'll just suppress it to avoid breaking the application
+                }
+            });
+        }
     }
 
     protected function checkIfTableExists($table)
     {
         try {
             return Schema::hasTable($table);
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return false;
         }
     }
