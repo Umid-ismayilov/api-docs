@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\QueryException;
-
+use Illuminate\Database\Schema\Blueprint;
 class ApiDocsServiceProvider extends ServiceProvider
 {
     public function register()
@@ -104,8 +104,14 @@ class ApiDocsServiceProvider extends ServiceProvider
     protected function createApiDocsTable()
     {
         if (!$this->checkIfTableExists('api_docs')) {
-            Schema::create('api_docs', function ($table) {
-                $table->id();
+            Schema::create('api_docs', function (Blueprint $table) {
+                // Laravel 7.x və daha yuxarı versiyalar üçün id() metodunu istifadə edirik
+                if (method_exists($table, 'id')) {
+                    $table->id();
+                } else {
+                    // Laravel 6.x və daha aşağı versiyalar üçün
+                    $table->bigIncrements('id');
+                }
                 $table->string('route');
                 $table->string('method');
                 $table->json('headers')->nullable();
