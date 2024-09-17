@@ -33,7 +33,7 @@ class ApiDocsServiceProvider extends ServiceProvider
     {
         Route::group($this->routeConfiguration(), function () {
             Route::get('/index', [ApiDocsController::class, 'index'])->name('api-docs.index');
-            Route::get('/api-docs/{id}', [ApiDocsController::class, 'show'])->name('api-docs.show');
+            Route::get('/api-docs/{id}', [ApiDocsController::class, 'show'])->name('api_docs.show');
         });
     }
 
